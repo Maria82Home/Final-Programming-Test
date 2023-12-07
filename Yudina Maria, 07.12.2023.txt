@@ -1,0 +1,102 @@
+maria@maria-VirtualBox:~$ cat > Pets
+
+dog Jack
+
+dog Black
+
+dog Snack
+
+cat Bob
+
+cat Job 
+
+hamster Bubble       
+
+hamster Trouble
+
+maria@maria-VirtualBox:~$ cat > Pack_animals
+
+horse Lady
+
+donkey Daddy
+
+camel Ready
+
+maria@maria-VirtualBox:~$ cat Pets Pack_animals >> new_file
+
+maria@maria-VirtualBox:~$ cat new_file
+
+dog Jack
+
+dog Black
+
+dog Snack
+
+cat Bob
+
+cat Job
+
+hamster Bubble
+
+hamster Trouble
+
+horse Lady
+
+donkey Daddy
+
+camel Ready
+
+maria@maria-VirtualBox:~$ mv new_file Human_friends
+
+maria@maria-VirtualBox:~$ ls
+
+09         Downloads      ls_txt   mydb          Public   students   Videos
+
+all_txt    error_txt      lws      Pack_animals  Shelter  task2.sh
+
+Desktop    gb             mentors  Pets          snap     Templates
+
+Documents  Human_friends  Music    Pictures      std_txt  tsk2
+
+maria@maria-VirtualBox:~$ mkdir Shelter
+
+maria@maria-VirtualBox:~$ mv Human_friends Shelter
+
+maria@maria-VirtualBox:~$ cd Shelter
+
+maria@maria-VirtualBox:~/Shelter$ ls
+
+Human_friends
+
+maria@maria-VirtualBox:~/Shelter$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.28-1_all.deb
+
+maria@maria-VirtualBox:~/Shelter$ sudo dpkg -i mysql-apt-config_0.8.28-1_all.deb
+
+maria@maria-VirtualBox:~/Shelter$ sudo apt-get update
+
+maria@maria-VirtualBox:~/Shelter$ sudo apt-get install mysql-server
+
+maria@maria-VirtualBox:~/Shelter$ systemctl status mysql
+
+maria@maria-VirtualBox:~/Shelter$ http://archive.ubuntu.com/ubuntu/pool/universe/m/mc/mc_4.8.29-2_amd64.deb
+
+maria@maria-VirtualBox:~/Shelter$ sudo dpkg -i mc_4.8.24-2ubuntu1_amd64.deb
+
+maria@maria-VirtualBox:~/Shelter$ sudo apt update
+
+maria@maria-VirtualBox:~/Shelter$ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys C300EE8C
+
+maria@maria-VirtualBox:~/Shelter$ sudo echo "deb  http://ppa.launchpad.net/nginx/stable/ubuntu lucid main" >> /etc/apt/sources.list
+
+maria@maria-VirtualBox:~/Shelter$ sudo apt update
+
+maria@maria-VirtualBox:~/Shelter$ sudo apt install -y nginx
+
+maria@maria-VirtualBox:~/Shelter$ dpkg -l nginx
+
+maria@maria-VirtualBox:~/Shelter$ sudo apt remove -y nginx
+
+maria@maria-VirtualBox:~/Shelter$ dpkg -l nginx
+
+maria@maria-VirtualBox:~/Shelter$ history >> 'Yudina Maria, 07.12.2023'
+
