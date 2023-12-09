@@ -1,0 +1,70 @@
+CREATE DATABASE IF NOT EXISTS New_human_friends;
+USE New_human_friends;
+DROP TABLE IF EXISTS types;
+CREATE TABLE types
+(
+	id INT AUTO_INCREMENT PRIMARY KEY, 
+	type VARCHAR(20)
+);
+
+DROP TABLE IF EXISTS animals;
+CREATE TABLE animals
+(	id INT AUTO_INCREMENT PRIMARY KEY, 
+	name VARCHAR(20),
+    type_id INT,
+    FOREIGN KEY (type_id) REFERENCES types (id) ON DELETE CASCADE ON UPDATE CASCADE,
+    birthday DATE,
+    commands VARCHAR(100)
+);
+
+INSERT INTO types (type)
+VALUES ('cat'),('dog'),('hamster'),('horse'),('donkey'),('camel');
+
+INSERT INTO animals (name, type_id, birthday,commands)
+VALUES ('Puffy',1,'2020-05-12','food'),
+('Sam',1,'2023-02-01','food, play'),
+('Tom',1,'2015-11-24','food'),
+('Jack',2,'2018-05-12','sit, stay, paw, bark'),
+('Misty',2,'2022-12-01','sit, stay'),
+('Fido',2,'2015-9-24','paw, bark'),
+('Bella',2,'2018-11-11','sit, stay, bark, roll'),
+('Ball',3,'2018-05-12',''),
+('Nut',3,'2022-12-01',''),
+('Thunder',4,'2015-07-21','trot, canter, gallop'),
+('Storm',4,'2014-05-05','trot, canter'),
+('Eeyore',5, '2017-09-18','walk, carry, load, bray'),
+('Burro',5,'2019-01-23','walk, bray, kick'),
+('Sandy',6,'2016-11-03','walk, carry, load'),
+('Sahara',6,'2015-08-14','walk, run');
+-- Удалить записи о верблюдах и объединить таблицы лошадей и ослов.
+DELETE FROM animals
+WHERE type_id = 6;
+
+CREATE OR REPLACE VIEW horse_donkey AS
+SELECT name, type, birthday FROM animals 
+JOIN types ON types.id=animals.type_id
+WHERE type_id = 4 OR type_id = 5;
+
+SELECT * FROM horse_donkey;
+
+-- Создать новую таблицу для животных в возрасте от 1 до 3 лет и вычислить их возраст с точностью до месяца.
+CREATE OR REPLACE VIEW young_animals AS
+    SELECT 
+        animals.name AS name,
+        types.type AS type,
+        animals.birthday AS birthday,
+        (TIMESTAMPDIFF(YEAR, animals.birthday, CURDATE())) AS years,
+        (TIMESTAMPDIFF(MONTH, animals.birthday, CURDATE()) % 12) AS months
+	FROM
+        animals
+        JOIN types ON animals.type_id = types.id
+	WHERE 
+    (TIMESTAMPDIFF(YEAR, animals.birthday, CURDATE()) >=1) 
+	AND 
+    (TIMESTAMPDIFF(YEAR, animals.birthday, CURDATE()) <= 3);
+
+SELECT * FROM young_animals;
+
+-- Объединить все созданные таблицы в одну, сохраняя информацию о принадлежности к исходным таблицам.
+SELECT animals.id, name, type, birthday, commands FROM animals 
+JOIN types ON types.id=animals.type_id 
