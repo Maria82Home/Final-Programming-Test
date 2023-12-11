@@ -29,13 +29,14 @@ public class Main {
             default:
                 System.out.println("Неверный выбор");
         }}
+        // Добавление животного
         public static void addAnimal (ArrayList<Animal>reestr) {
         Animal animal;
-            System.out.println("name");
+            System.out.println("Введите имя");
             String name = in.nextLine();
-            System.out.println("birthday");
+            System.out.println("Введите дату рождения");
             String birthday = in.nextLine();
-            System.out.println("commands");
+            System.out.println("Введите команды");
             ArrayList<String> commands = new ArrayList<>();
             while(true){
                 String command = in.toString();
@@ -44,7 +45,7 @@ public class Main {
                 }
                 commands.add(command);
             }
-            System.out.println("type");
+            System.out.println("Введите тип животного (cat, dog, hamster, horse, donkey, camel");
             String type = in.toString();
             switch (type){
             case "cat":animal = new Cat(name,birthday,commands);
@@ -57,19 +58,19 @@ public class Main {
         }
         reestr.add(animal);
         }
-
+        // Просмотр команд
         public static void viewCommands (ArrayList<Animal> reestr) {
-            System.out.println("name");
+            System.out.println("Какое животное интересует? Введите имя");
             String name = in.nextLine();
             for (Animal animal : reestr){
                 if (animal.name == name){animal.getCommands();}
             }
         }
-
+        // Добавление команд
         public static void addCommands (ArrayList<Animal> reestr) {
-            System.out.println("name");
+            System.out.println("Какое животное интересует? Введите имя");
             String name = in.nextLine();
-            System.out.println("command");
+            System.out.println("Какую команду добавить?");
             String command = in.nextLine();
             for (Animal animal : reestr){
                 if (animal.name == name){animal.addCommands(command);}
