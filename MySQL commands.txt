@@ -67,4 +67,4 @@ SELECT * FROM young_animals;
 
 -- Объединить все созданные таблицы в одну, сохраняя информацию о принадлежности к исходным таблицам.
 SELECT animals.id, name, type, birthday, commands FROM animals 
-JOIN types ON types.id=animals.type_id 
+JOIN types ON types.id=animals.type_id;
